@@ -2,10 +2,9 @@ from django.db import models
 from collection.models import Poem, Tag
 from django.urls import reverse
 
-# Create your models here.
-
 
 class Post(models.Model):
+    """Attributes"""
     title = models.CharField(max_length=63)
     slug = models.SlugField(
         max_length=63,
@@ -29,24 +28,3 @@ class Post(models.Model):
         return "{} on {}".format(
             self.title,
             self.pub_date.strftime('%Y-%m-%d'))
-
-    # def get_absolute_url(self):
-    #     return reverse(
-    #         'blog_post_detail',
-    #         kwargs={'year': self.pub_date.year,
-    #                 'month': self.pub_date.month,
-    #                 'slug': self.slug})
-
-    # def get_update_url(self):
-    #     return reverse(
-    #         'blog_post_update',
-    #         kwargs={'year': self.pub_date.year,
-    #                 'month': self.pub_date.month,
-    #                 'slug': self.slug})
-
-    # def get_delete_url(self):
-    #     return reverse(
-    #         'blog_post_delete',
-    #         kwargs={'year': self.pub_date.year,
-    #                 'month': self.pub_date.month,
-    #                 'slug': self.slug})
