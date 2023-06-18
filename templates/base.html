@@ -21,26 +21,18 @@ Created on Sat Jun 17 17:00:26 2023
      </script><![endif]-->
    </head>
    
-   <body>
-   
-     <nav>
+   <body>  
+     <div><!-- container -->
+       <header>
+           <h1>Poems Collection</h1>
+       </header>       
+       <nav>
        <ul>
          <li>
            <a href="{% url 'blog_post_list' %}">
              Blog</a></li>
-         <li>
-           <a href="{% url 'collection_poem_list' %}">
-             Poems</a></li>
-         <li>
-           <a href="{% url 'collection_tag_list' %}">
-             Tags</a></li>
        </ul>
      </nav>
-  
-     <div><!-- container -->
-       <header>
-           <h1>Poems Collection</h1>
-       </header>
        <main>
          {% block content %} 
            This is default content!

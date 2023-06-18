@@ -31,7 +31,7 @@ class Poem(models.Model):
          unique=True,
          help_text='A label for URL conﬁg.')
     description = models.TextField()
-    founded_date = models.DateField(
+    written_date = models.DateField(
         'date written')
     tags = models.ManyToManyField(Tag, blank=True)
 

@@ -1,0 +1,82 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jun 18 15:02:27 2023
+
+@author: Nathalie
+"""
+{% extends parent_template|default:"collection/base_collection.html" %} 
+
+{% block title %}
+{{ block.super }} - {{ poem.name|title }}
+{% endblock %}
+
+{% block content %}
+<article>
+
+  <h2>{{ poem.name }}-{{poem.name_author}</h2>
+  <dl>
+    <dt>Date written</dt>
+      <dd>{{ poem.written_date|date:"F jS, Y" }}</dd>
+      
+  <dt>Tag{{ poem.tags.count|pluralize }}</dt>
+    {% for tag in poem.tags.all %}
+     <dd><a href="">
+       {{ tag.name|title }}
+     </a></dd>
+    {% endfor %}
+  
+  </dl>
+  
+  {{ poem.description|linebreaks }}
+  
+  <ul>
+     <li>
+       <a href="">
+         Update Poem</a></li>
+     <li>
+       <a href="">
+         Delete Poem</a></li>
+  </ul>
+  
+      {% if poem.newslink_set.all %}
+         <section>
+           <h3>Recent News</h3>
+           <ul>
+             {% for newslink in poem.newslink_set.all %}
+              <li>
+                <a href="">
+                  {{ newslink.title|title }}</a>
+              </li>
+             <ul>
+               <li>
+                  <a href="">
+                    Update Link</a></li>
+               <li>
+                  <a href="">
+                    Delete Link</a></li>
+             </ul>
+             {% endfor %}
+         </ul>
+       </section>
+     {% endif %}
+     <p>
+       <a href="">
+         Add Article</a>
+     </p>
+     
+     {% if poem.blog_posts.all %}
+         <section>
+          <h3>Blog Post{{ startup.blog_posts.all|pluralize }}</h3>
+          <ul>
+            {% for post in poem.blog_posts.all %}
+             <li>
+               <a href="">
+                 {{ post.title|title }}</a>
+             </li>
+            {% endfor %}
+         </ul>
+        </section>
+     {% endif %}
+ 
+ </article>
+{% endblock %}

@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jun 18 15:01:31 2023
+
+@author: Nathalie
+"""
+
+{% extends parent_template|default:"collection/base_collection.html" %} 
+
+{% block title %}
+{{ block.super }} - Poems
+{% endblock %}
+
+{% block content %}
+ 
+ <h2>Poems List</h2>
+  <div>
+    <a href="">
+      Add New Poem</a>
+  </div>
+
+ <ul>
+   {% for poem in poem_list %}
+    <li>
+      <a href="">
+        {{ poem.name }}</a>
+      <ul>
+        <li>
+           <a href="">
+             Update Poem</a></li>
+        <li>
+           <a href="">
+             Delete Poem</a></li>
+      </ul>  
+    </li>
+   {% empty %}
+     <li><em>No Poem Available</em></li>
+   {% endfor %}
+ </ul>
+{% endblock %}
