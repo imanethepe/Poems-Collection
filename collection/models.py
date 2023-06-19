@@ -1,11 +1,10 @@
 from django.db import models
 from django.urls import reverse
 
-# Create your models here.
-
 
 class Tag(models.Model):
     """Attributes"""
+
     name = models.CharField(
         max_length=31, unique=True)
     slug = models.SlugField(
@@ -22,6 +21,7 @@ class Tag(models.Model):
 
 class Poem(models.Model):
     """Attributes"""
+
     name = models.CharField(
         max_length=31, db_index=True)
     name_author = models.CharField(
@@ -46,6 +46,7 @@ class Poem(models.Model):
 
 class NewsLink(models.Model):
     """Attributes"""
+
     title = models.CharField(max_length=63)
     slug = models.SlugField(max_length=63)
     pub_date = models.DateField('date published')
