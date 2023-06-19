@@ -32,7 +32,7 @@ Created on Sat Jun 17 15:44:19 2023
       </p>
       <ul>
         {% for poem in tag.poem_set.all %}
-         <li><a href="">
+         <li><a href="{{ poem.get_absolute_url }}">
            {{ poem.name }}
          </a></li>
        {% endfor %}
@@ -44,7 +44,7 @@ Created on Sat Jun 17 15:44:19 2023
         <h3>Blog Post{{ tag.blog_posts.count|pluralize }}</h3>
         <ul>
           {% for post in tag.blog_posts.all %}
-            <li><a href="">
+            <li><a href="{{ post.get_absolute_url }}">
               {{ post.title|title }} 
             </a></li>
          {% endfor %}

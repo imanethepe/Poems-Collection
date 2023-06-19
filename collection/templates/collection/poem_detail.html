@@ -20,7 +20,7 @@ Created on Sun Jun 18 15:02:27 2023
       
   <dt>Tag{{ poem.tags.count|pluralize }}</dt>
     {% for tag in poem.tags.all %}
-     <dd><a href="">
+     <dd><a href="{{ tag.get_absolute_url }}">
        {{ tag.name|title }}
      </a></dd>
     {% endfor %}
@@ -70,7 +70,7 @@ Created on Sun Jun 18 15:02:27 2023
           <ul>
             {% for post in poem.blog_posts.all %}
              <li>
-               <a href="">
+               <a href="{{ post.get_absolute_url }}">
                  {{ post.title|title }}</a>
              </li>
             {% endfor %}

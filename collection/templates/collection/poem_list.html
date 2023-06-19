@@ -13,7 +13,6 @@ Created on Sun Jun 18 15:01:31 2023
 
 {% block content %}
  
- <h2>Poems List</h2>
   <div>
     <a href="">
       Add New Poem</a>
@@ -22,7 +21,7 @@ Created on Sun Jun 18 15:01:31 2023
  <ul>
    {% for poem in poem_list %}
     <li>
-      <a href="">
+      <a href="{{ poem.get_absolute_url }}">
         {{ poem.name }}</a>
       <ul>
         <li>

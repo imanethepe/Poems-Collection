@@ -18,6 +18,9 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('collection_tag_detail',
+                       kwargs={'slug': self.slug})
 
 class Poem(models.Model):
     """Attributes"""
@@ -42,6 +45,10 @@ class Poem(models.Model):
     def __str__(self):
         return "{}:{}".format(
             self.poem, self.name_author)
+
+    def get_absolute_url(self):
+        return reverse('collection_poem_detail',
+                       kwargs={'slug': self.slug})
 
 
 class NewsLink(models.Model):

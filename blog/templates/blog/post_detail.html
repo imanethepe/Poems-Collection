@@ -42,7 +42,7 @@ Created on Sun Jun 18 15:27:26 2023
           <h3>Poem{{ post.poems.count|pluralize }}</h3>
           <ul>
             {% for poem in post.poems.all %}
-              <li><a href="">
+              <li><a href="{{ poem.get_absolute_url }}">
                 {{ poem.name }}
               </a></li>
             {% endfor %}
@@ -55,7 +55,7 @@ Created on Sun Jun 18 15:27:26 2023
           <h3>Tag{{ post.tags.count|pluralize }}</h3>
           <ul>
             {% for tag in post.tags.all %}
-              <li><a href="">
+              <li><a href="{{ tag.get_absolute_url }}">
                 {{ tag.name|title }}
               </a></li>
             {% endfor %}
