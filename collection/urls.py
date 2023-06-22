@@ -9,6 +9,7 @@ from django.urls import path
 from django.urls import re_path
 from .views import (
     TagList, TagDetail, PoemList,
+    PoemDetail
     )
 
 urlpatterns = [
@@ -21,4 +22,7 @@ urlpatterns = [
     path(r'poem/',
          PoemList.as_view(),
          name='collection_poem_list'),
+    re_path(r'poem/(?P<slug>[\w\-]+)/$',
+            PoemDetail.as_view(),
+            name='collection_poem_detail'),
 ]

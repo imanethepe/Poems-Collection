@@ -14,7 +14,7 @@ Created on Sun Jun 18 15:01:31 2023
 {% block content %}
  
   <div>
-    <a href="">
+    <a href="% url 'organizer_poem_write' %">
       Add New Poem</a>
   </div>
 
@@ -25,10 +25,10 @@ Created on Sun Jun 18 15:01:31 2023
         {{ poem.name }}</a>
       <ul>
         <li>
-           <a href="">
+           <a href="{{ poem.get_update_url }}">
              Update Poem</a></li>
         <li>
-           <a href="">
+           <a href="{{ poem.get_delete_url }}">
              Delete Poem</a></li>
       </ul>  
     </li>

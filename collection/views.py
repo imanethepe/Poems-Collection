@@ -24,7 +24,7 @@ class TagDetail(View):
             Tag, slug__iexact=slug)
         return render(
             request,
-            'organizer/tag_detail.html',
+            'collection/tag_detail.html',
             {'tag': tag})
 
 
@@ -37,3 +37,15 @@ class PoemList(View):
                      'collection/poem_list.html',
                      {'poem_list': Poem.objects.all()}
                      )
+
+
+class PoemDetail(View):
+    """Get request of the detail of a poem"""
+
+    def get(self, request, slug):
+        poem = get_object_or_404(
+            Tag, slug__iexact=slug)
+        return render(
+            request,
+            'collection/poem_detail.html',
+            {'poem': poem})

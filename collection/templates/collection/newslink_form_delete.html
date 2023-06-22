@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jun 20 15:17:57 2023
+Created on Thu Jun 22 17:05:40 2023
 
 @author: Imanethepe
 """
@@ -9,23 +9,23 @@ Created on Tue Jun 20 15:17:57 2023
 
 
 {% block title %}
-{{ block.super }} - Delete Tag
+{{ block.super }} - Delete Link
 {% endblock %}
 
 {% block content %}
   <div>
     <div>
       <form
-          action="{{ tag.get_delete_url }}"
+          action="{{ newslink.get_delete_url }}"
           method="post">
         {% csrf_token %} 
         <p>
         Are you sure you want to Delete
-        Tag {{ tag.name }}?
+        Link {{ newslink.name }}?
         </p>
-        <a href="{{ tag.get_absolute_url }}">
+        <a href="{{ newslink.get_absolute_url }}">
           Cancel</a>
-        <button type="submit">Delete Tag</button>
+        <button type="submit">Delete Link</button>
       </form>
     </div>
   </div> 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jun 20 14:56:54 2023
+Created on Thu Jun 22 16:36:55 2023
 
 @author: Imanethepe
 """
@@ -8,19 +8,19 @@ Created on Tue Jun 20 14:56:54 2023
 {% extends parent_template|default:"collection/base_collection.html" %}
 
 {% block title %}
-{{ block.super }} - Create Tag
+{{ block.super }} - Write Poem
 {% endblock %}
 
 {% block content %}
   <div>
     <div> 
       <form
-          action="{% url 'collection_tag_create' %}"
+          action="{% url 'organizer_poem_write' %}"
           method="post">
           {% csrf_token %}
           {{ form.as_p }}
           <button type="submit">
-            Create Tag</button>
+            New Poem</button>
      </form>
    </div>
  </div>  

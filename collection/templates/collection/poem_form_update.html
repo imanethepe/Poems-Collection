@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jun 22 16:40:31 2023
+
+@author: Imanethepe
+"""
+
+{% extends parent_template|default:"collection/base_collection.html" %}
+
+
+{% block title %}
+{{ block.super }} - Update Poem
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div>
+     <form
+         action="{{ poem.get_update_url }}"
+         method="post">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <button type="submit">
+         Update Poem</button>
+     </form>
+    </div>
+  </div> 
+{% endblock %}

@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jun 22 16:52:19 2023
+
+@author: Imanethepe
+"""
+
+{% extends parent_template|default:"blog/base_blog.html" %}
+
+
+{% block title %}
+{{ block.super }} - Delete Blog Post
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div>
+      <form
+          action="{{ post.get_delete_url }}"
+          method="post">
+        {% csrf_token %} 
+        <p>
+        Are you sure you want to Delete
+        Post {{ post.name }}?
+        </p>
+        <a href="{{ post.get_absolute_url }}">
+          Cancel</a>
+        <button type="submit">Delete Post</button>
+      </form>
+    </div>
+  </div> 
+{% endblock %}

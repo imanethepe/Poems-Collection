@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jun 20 14:56:54 2023
+Created on Thu Jun 22 16:46:13 2023
 
 @author: Imanethepe
 """
 
-{% extends parent_template|default:"collection/base_collection.html" %}
+{% extends parent_template|default:"blog/base_blog.html" %}
 
 {% block title %}
-{{ block.super }} - Create Tag
+{{ block.super }} - Create Blog Post
 {% endblock %}
 
 {% block content %}
   <div>
     <div> 
       <form
-          action="{% url 'collection_tag_create' %}"
+          action="{% url 'blog_post_create' %}"
           method="post">
           {% csrf_token %}
           {{ form.as_p }}
           <button type="submit">
-            Create Tag</button>
+            Create Blog Post</button>
      </form>
    </div>
  </div>  
