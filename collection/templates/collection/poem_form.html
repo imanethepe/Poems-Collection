@@ -15,7 +15,7 @@ Created on Thu Jun 22 16:36:55 2023
   <div>
     <div> 
       <form
-          action="{% url 'organizer_poem_write' %}"
+          action="{% url 'collection_poem_write' %}"
           method="post">
           {% csrf_token %}
           {{ form.as_p }}

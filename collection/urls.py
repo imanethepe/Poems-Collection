@@ -9,20 +9,30 @@ from django.urls import path
 from django.urls import re_path
 from .views import (
     TagList, TagDetail, PoemList,
-    PoemDetail
+    PoemDetail, TagCreate, PoemWrite,
+    NewsLinCreate
     )
 
 urlpatterns = [
     path(r'tag/',
          TagList.as_view(),
          name='collection_tag_list'),
+    path(r'tag/create/',
+         TagCreate.as_view(),
+         name='collection_tag_create'),
     re_path(r'tag/(?P<slug>[\w\-]+)/$',
             TagDetail.as_view(),
             name='collection_tag_detail'),
     path(r'poem/',
          PoemList.as_view(),
          name='collection_poem_list'),
+    path(r'poem/write',
+         PoemWrite.as_view(),
+         name='collection_poem_write'),
     re_path(r'poem/(?P<slug>[\w\-]+)/$',
             PoemDetail.as_view(),
             name='collection_poem_detail'),
+    path(r'newslink/create/',
+         NewsLinCreate.as_view(),
+         name='collection_newslink_create'),
 ]

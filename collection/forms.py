@@ -19,6 +19,9 @@ class SlugCleanMixin:
         if new_slug == 'create':
             raise ValidationError(
                 'Slug may not be "create".')
+        if new_slug == 'write':
+            raise ValidationError(
+                'Slug may not be "write".')
         return new_slug
 
 
