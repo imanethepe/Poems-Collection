@@ -10,8 +10,8 @@ from django.urls import re_path
 from .views import (
     TagList, TagDetail, PoemList,
     PoemDetail, TagCreate, PoemWrite,
-    NewsLinCreate
-    )
+    NewsLinkCreate, NewsLinkUpdate,
+    TagUpdate, PoemUpdate)
 
 urlpatterns = [
     path(r'tag/',
@@ -23,6 +23,9 @@ urlpatterns = [
     re_path(r'tag/(?P<slug>[\w\-]+)/$',
             TagDetail.as_view(),
             name='collection_tag_detail'),
+    re_path(r'tag/(?P<slug>[\w\-]+)/update$',
+            TagUpdate.as_view(),
+            name='collection_tag_update'),
     path(r'poem/',
          PoemList.as_view(),
          name='collection_poem_list'),
@@ -32,7 +35,13 @@ urlpatterns = [
     re_path(r'poem/(?P<slug>[\w\-]+)/$',
             PoemDetail.as_view(),
             name='collection_poem_detail'),
+    re_path(r'poem/(?P<slug>[\w\-]+)/update$',
+            PoemUpdate.as_view(),
+            name='collection_poem_update'),
     path(r'newslink/create/',
-         NewsLinCreate.as_view(),
+         NewsLinkCreate.as_view(),
          name='collection_newslink_create'),
+    re_path(r'newslink/update/(?P<slug>[\w\-]+)/$',
+            NewsLinkUpdate.as_view(),
+            name='collection_newslink_update'),
 ]

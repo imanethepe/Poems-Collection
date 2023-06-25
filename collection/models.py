@@ -22,6 +22,10 @@ class Tag(models.Model):
         return reverse('collection_tag_detail',
                        kwargs={'slug': self.slug})
 
+    def get_update_url(self):
+        return reverse('collection_tag_update',
+                       kwargs={'slug': self.slug})
+
 class Poem(models.Model):
     """Attributes"""
 
@@ -44,10 +48,14 @@ class Poem(models.Model):
 
     def __str__(self):
         return "{}:{}".format(
-            self.poem, self.name_author)
+            self.name, self.name_author)
 
     def get_absolute_url(self):
         return reverse('collection_poem_detail',
+                       kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('collection_poem_update',
                        kwargs={'slug': self.slug})
 
 
@@ -71,3 +79,7 @@ class NewsLink(models.Model):
     def __str__(self):
         return "{}:{}".format(
             self.poem, self.title)
+
+    def get_update_url(self):
+        return reverse('collection_newslink_update',
+                       kwargs={'slug': self.slug})
