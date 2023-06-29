@@ -15,7 +15,7 @@ Created on Thu Jun 22 17:03:14 2023
   <div>
     <div> 
       <form
-          action="{% url 'collection_newslink_update' %}"
+          action="{{ newslink.get_update_url }}"
           method="post">
           {% csrf_token %}
           {{ form.as_p }}

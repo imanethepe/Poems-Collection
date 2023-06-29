@@ -9,7 +9,7 @@ from .forms import (
     NewsLinkForm)
 from .utils import (
     ObjectCreateMixin, ObjectUpdateMixin,
-    )
+    ObjectDeleteMixin,)
 
 class TagList(View):
     """Get request of the list of tags"""
@@ -50,7 +50,7 @@ class PoemDetail(View):
 
     def get(self, request, slug):
         poem = get_object_or_404(
-            Tag, slug__iexact=slug)
+            Poem, slug__iexact=slug)
         return render(
             request,
             'collection/poem_detail.html',
@@ -82,12 +82,13 @@ class NewsLinkUpdate(View):
     """Update link to article"""
 
     form_class = NewsLinkForm
+    model = NewsLink
     template_name = (
-         'collection/newslink_form_update.html')
+        'collection/newslink_form_update.html')
 
     def get(self, request, slug):
         newslink = get_object_or_404(
-             NewsLink, slug=slug)
+             self.model, slug=slug)
         context = {
              'form': self.form_class(
                  instance=newslink),
@@ -98,7 +99,7 @@ class NewsLinkUpdate(View):
 
     def post(self, request, slug):
         newslink = get_object_or_404(
-             NewsLink, slug=slug)
+             self.model, slug=slug)
         bound_form = self.form_class(
              request.POST, instance=newslink)
         if bound_form.is_valid():
@@ -131,3 +132,43 @@ class PoemUpdate(ObjectUpdateMixin, View):
     model = Poem
     template_name = (
        'collection/poem_form_update.html')
+
+
+class NewsLinkDelete(View):
+    """Delete link to article"""
+
+    def get(self, request, slug):
+        newslink = get_object_or_404(
+            NewsLink, slug=slug)
+        return render(
+            request,
+            'collection/'
+            'newslink_form_delete.html',
+            {'newslink': newslink})
+
+    def post(self, request, slug):
+        newslink = get_object_or_404(
+            NewsLink, slug=slug)
+        poem = newslink.poem
+        newslink.delete()
+        return redirect(poem)
+
+
+class TagDelete(ObjectDeleteMixin, View):
+    """Delete a tag"""
+
+    model = Tag
+    success_url = reverse_lazy(
+        'collection_tag_list')
+    template_name = (
+       'collection/tag_form_delete.html')
+
+
+class PoemDelete(ObjectDeleteMixin, View):
+    """Delete a poem"""
+
+    model = Poem
+    success_url = reverse_lazy(
+        'collection_poem_list')
+    template_name = (
+       'collection/poem_form_delete.html')

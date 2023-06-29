@@ -25,14 +25,15 @@ class SlugCleanMixin:
         return new_slug
 
 
-class NewsLinkForm(
-        SlugCleanMixin, forms.ModelForm):
+class NewsLinkForm(forms.ModelForm):
     """Attributes similar to model"""
 
     class Meta:
         model = NewsLink
         ﬁelds = '__all__'
 
+    def clean_slug(self):
+        return self.cleaned_data['slug'].lower()
 
 class TagForm(
         SlugCleanMixin, forms.ModelForm):
@@ -56,3 +57,6 @@ class PoemForm(
 
     def clean_name(self):
         return self.cleaned_data['name'].lower()
+
+    def clean_author(self):
+        return self.cleaned_data['author'].lower()

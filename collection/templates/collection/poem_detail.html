@@ -13,16 +13,16 @@ Created on Sun Jun 18 15:02:27 2023
 {% block content %}
 <article>
 
-  <h2>{{ poem.name }}-{{poem.name_author}</h2>
+  <h2>{{ poem.name|title }}-{{ poem.author|title }}</h2>
   <dl>
-    <dt>Date written</dt>
-      <dd>{{ poem.written_date|date:"F jS, Y" }}</dd>
+    <dt>Publication Date</dt>
+      <dd>{{ poem.founded_date|date:"F jS, Y" }}</dd>
       
-  <dt>Tag{{ poem.tags.count|pluralize }}</dt>
-    {% for tag in poem.tags.all %}
-     <dd><a href="{{ tag.get_absolute_url }}">
-       {{ tag.name|title }}
-     </a></dd>
+    <dt>Tag{{ poem.tags.count|pluralize }}</dt>
+      {% for tag in poem.tags.all %}
+      <dd><a href="{{ tag.get_absolute_url }}">
+        {{ tag.name|title }}
+      </a></dd>
     {% endfor %}
   
   </dl>
@@ -34,7 +34,7 @@ Created on Sun Jun 18 15:02:27 2023
        <a href="{{ poem.get_update_url }}">
          Update Poem</a></li>
      <li>
-       <a href="">
+       <a href="{{ poem.get_delete_url }}">
          Delete Poem</a></li>
   </ul>
   
@@ -44,7 +44,7 @@ Created on Sun Jun 18 15:02:27 2023
            <ul>
              {% for newslink in poem.newslink_set.all %}
               <li>
-                <a href="">
+                <a href="{{ newslink.link}}">
                   {{ newslink.title|title }}</a>
               </li>
              <ul>
@@ -52,7 +52,7 @@ Created on Sun Jun 18 15:02:27 2023
                   <a href="{{ newslink.get_update_url }}">
                     Update Link</a></li>
                <li>
-                  <a href="">
+                  <a href="{{ newslink.get_delete_url }}">
                     Delete Link</a></li>
              </ul>
              {% endfor %}
@@ -66,7 +66,7 @@ Created on Sun Jun 18 15:02:27 2023
      
      {% if poem.blog_posts.all %}
          <section>
-          <h3>Blog Post{{ startup.blog_posts.all|pluralize }}</h3>
+          <h3>Blog Post{{ poem.blog_posts.all|pluralize }}</h3>
           <ul>
             {% for post in poem.blog_posts.all %}
              <li>

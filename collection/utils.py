@@ -4,11 +4,10 @@ Created on Sat Jun 24 15:21:53 2023
 
 @author: Imanethepe
 """
-
+from django.http import HttpResponseRedirect
 from django.shortcuts import (
     render, redirect,
-    get_object_or_404,
-    )
+    get_object_or_404)
 
 
 class ObjectCreateMixin:
@@ -23,9 +22,6 @@ class ObjectCreateMixin:
 
     def post(self, request):
         bound_form = self.form_class(request.POST)
-        print(bound_form.is_bound)
-        print(bound_form.is_valid())
-        print(bound_form.errors)
         if bound_form.is_valid():
             new_object = bound_form.save()
             return redirect(new_object)
@@ -34,7 +30,6 @@ class ObjectCreateMixin:
                 request,
                 self.template_name,
                 {'form': bound_form})
-
 
 class ObjectUpdateMixin:
     form_class = None
@@ -68,3 +63,25 @@ class ObjectUpdateMixin:
                 request,
                 self.template_name,
                 context)
+
+
+class ObjectDeleteMixin:
+    model = None
+    success_url = ''
+    template_name = ''
+
+    def get(self, request, slug):
+        obj = get_object_or_404(
+            self.model, slug__iexact=slug)
+        context = {
+            self.model.__name__.lower(): obj,
+        }
+        return render(
+            request, self.template_name, context)
+
+    def post(self, request, slug):
+        obj = get_object_or_404(
+            self.model, slug__iexact=slug)
+        obj.delete()
+        return HttpResponseRedirect(
+            self.success_url)

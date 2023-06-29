@@ -22,7 +22,7 @@ Created on Sun Jun 18 15:01:31 2023
    {% for poem in poem_list %}
     <li>
       <a href="{{ poem.get_absolute_url }}">
-        {{ poem.name }}</a>
+        {{ poem.name|title }}</a>
       <ul>
         <li>
            <a href="{{ poem.get_update_url }}">

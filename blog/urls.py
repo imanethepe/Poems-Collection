@@ -10,7 +10,7 @@ from django.urls import re_path
 from .views import (
     PostList, PostDetail,
     PostCreate, PostUpdate,
-    )
+    PostDelete)
 
 urlpatterns = [
     path('',
@@ -30,4 +30,10 @@ urlpatterns = [
             r'update/$',
             PostUpdate.as_view(),
             name='blog_post_update'),
+    re_path(r'(?P<year>\d{4})/'
+            r'(?P<month>\d{1,2})/'
+            r'(?P<slug>[\w\-]+)/'
+            r'delete/$',
+            PostDelete.as_view(),
+            name='blog_post_delete'),
 ]
