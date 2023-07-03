@@ -1,12 +1,13 @@
 from django.shortcuts import (
     render, get_object_or_404, redirect)
+from django.contrib.messages import success
 from django.views.generic import View
 from django.urls import reverse_lazy
 from .models import (
     Tag, Poem, NewsLink)
 from .forms import (
     TagForm, PoemForm,
-    NewsLinkForm)
+    NewsLinkForm, ContactForm)
 from .utils import (
     ObjectCreateMixin, ObjectUpdateMixin,
     ObjectDeleteMixin,)
@@ -172,3 +173,41 @@ class PoemDelete(ObjectDeleteMixin, View):
         'collection_poem_list')
     template_name = (
        'collection/poem_form_delete.html')
+
+
+class ContactView(View):
+    form_class = ContactForm
+    template_name = 'collection/contact_form.html'
+
+    # def get(self, request):
+    # return render(request,
+    #               self.template_name,
+    #               {'form': self.form_class()})
+    def get(self, request, slug):
+        obj = get_object_or_404(
+            Poem, slug=slug)
+        context = {
+            'form': self.form_class(instance=obj),
+            'poem': obj,
+        }
+        return render(request,
+                      self.template_name,
+                      context)
+
+    def post(self, request, slug):
+        obj = get_object_or_404(
+            Poem, slug__iexact=slug)
+        bound_form = self.form_class(
+            request.POST, instance=obj)
+        # print(bound_form.errors)
+        if bound_form.is_valid():
+            mail_sent = bound_form.send_mail()
+            if mail_sent:
+                # shortcut for add_message
+                success(
+                  request,
+                  'Email successfully sent.')
+                return redirect('collection_poem_list')
+        return render(request,
+                      self.template_name,
+                      {'form': bound_form})

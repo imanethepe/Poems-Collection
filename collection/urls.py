@@ -12,7 +12,7 @@ from .views import (
     PoemDetail, TagCreate, PoemWrite,
     NewsLinkCreate, NewsLinkUpdate,
     TagUpdate, PoemUpdate, NewsLinkDelete,
-    TagDelete, PoemDelete,
+    TagDelete, PoemDelete, ContactView,
     )
 
 urlpatterns = [
@@ -55,4 +55,7 @@ urlpatterns = [
     re_path(r'newslink/delete/(?P<slug>[\w\-]+)/$',
             NewsLinkDelete.as_view(),
             name='collection_newslink_delete'),
+    re_path(r'contact/(?P<slug>[\w\-]+)/$',
+            ContactView.as_view(),
+            name='contact'),
 ]

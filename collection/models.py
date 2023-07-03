@@ -67,6 +67,10 @@ class Poem(models.Model):
         return reverse('collection_poem_delete',
                        kwargs={'slug': self.slug})
 
+    def get_contact_url(self):
+        return reverse('contact',
+                       kwargs={'slug': self.slug})
+
 
 class NewsLink(models.Model):
     """Attributes"""

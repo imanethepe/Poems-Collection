@@ -24,4 +24,5 @@ urlpatterns = [
     path('', redirect_root),
     path(r'blog/', include(blog_urls)),
     path('', include(collection_urls)),
+    path('', include(collection_urls)),
 ]

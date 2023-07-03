@@ -45,6 +45,21 @@ Created on Sat Jun 17 17:00:26 2023
          {% endblock %}
        </main>
        
+     {% if messages %}
+      <div>
+        <div>
+          <ul>
+            {% for message in messages %}
+              {% if message.tags %}
+                <li class="{{ message.tags }}">
+              {% else %}
+                <li>
+              {% endif %}
+              {{ message }}</li>
+            {% endfor %}
+       </ul></div></div>
+     {% endif %}
+       
      </div><!-- container -->
     
      <footer>

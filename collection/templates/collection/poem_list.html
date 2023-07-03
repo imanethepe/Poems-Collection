@@ -20,9 +20,9 @@ Created on Sun Jun 18 15:01:31 2023
 
  <ul>
    {% for poem in poem_list %}
-    <li>
+   <li>
       <a href="{{ poem.get_absolute_url }}">
-        {{ poem.name|title }}</a>
+        {{ poem.name|title }}-{{ poem.author|title }}</a>
       <ul>
         <li>
            <a href="{{ poem.get_update_url }}">
@@ -30,8 +30,8 @@ Created on Sun Jun 18 15:01:31 2023
         <li>
            <a href="{{ poem.get_delete_url }}">
              Delete Poem</a></li>
-      </ul>  
-    </li>
+      </ul>      
+    </li> 
    {% empty %}
      <li><em>No Poem Available</em></li>
    {% endfor %}

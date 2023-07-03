@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jul  2 16:58:35 2023
+
+@author: Imanethepe
+"""
+
+{% extends parent_template|default:"collection/base_collection.html" %}
+
+{% block title %}
+{{ block.super }} - Send Poem!
+{% endblock %}
+
+ {% block content %}
+   <div>
+     <div>
+       <form
+           action="{{ poem.get_contact_url }}"
+           method="post">
+         {% csrf_token %}
+         {{ form.as_p }}
+         <button type="submit">
+           Send Poem</button>
+        </form>
+     </div>
+   </div>
+{% endblock %}
